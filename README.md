@@ -26,6 +26,9 @@ github "turbolinks/turbolinks-ios" "master"
 *Be warned, Carthage is not as stable as Pod's for now*
 
 # ROR Setup/Tips
+
+https://github.com/reinteractive/turbolinks_rails_template
+
 You will need to make the following changes to your ROR app to work with Turbolinks iOS in a usable manor.
 * Implement `TurbolinksNativeMessageHandler` JS
 * All forms MUST be submitted `remote: true`
