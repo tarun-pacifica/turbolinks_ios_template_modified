@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Stockland
+
+  Created by Mark Biegel on 6/1/17.
+*/
+
+"Error.page_not_found.title" = "Page not found";
+"Error.page_not_found.message" = "It looks like we cannot find that page";
+"Error.network.title" = "Network Error";
+"Error.network.message" = "It looks like we cannot load the app";
+"Error.unknown.title" = "Something went wrong";
+"Error.unknown.message" = "We are working on that right now";
+"Error.http_status_code.title" = "HTTP Error";
+"Error.http_status_code.message" = "HTTP Error";

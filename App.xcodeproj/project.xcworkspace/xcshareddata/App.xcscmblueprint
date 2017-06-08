@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D8D0FAFBD034BE08EAE9463BA276877BB3A4AAD7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D8D0FAFBD034BE08EAE9463BA276877BB3A4AAD7" : 9223372036854775807,
+    "35B57F98310D7FA4A57C73334F0CD8B9ABDED22E" : 9223372036854775807,
+    "8590EC6BBFA8970040B6E579CC61EA9EC4AF97FF" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3192FFBB-4F3B-4767-BDA1-A5D7DC1E8210",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D8D0FAFBD034BE08EAE9463BA276877BB3A4AAD7" : "sterling_ios\/",
+    "35B57F98310D7FA4A57C73334F0CD8B9ABDED22E" : "stockland_ios\/",
+    "8590EC6BBFA8970040B6E579CC61EA9EC4AF97FF" : "playground\/master-app-ios\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "App",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "App.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:reinteractive\/stockland_ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "35B57F98310D7FA4A57C73334F0CD8B9ABDED22E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/themasterapp\/master-app-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8590EC6BBFA8970040B6E579CC61EA9EC4AF97FF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:reinteractive\/sterling_ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D8D0FAFBD034BE08EAE9463BA276877BB3A4AAD7"
+    }
+  ]
+}
