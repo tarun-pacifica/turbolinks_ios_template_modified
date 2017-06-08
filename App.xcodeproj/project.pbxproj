@@ -24,8 +24,8 @@
 		19B3929F1E1F59F0009FB2B8 /* TurbolinksNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3928E1E1F59F0009FB2B8 /* TurbolinksNavigationController.swift */; };
 		19B392A41E1F637C009FB2B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19B392A31E1F637B009FB2B8 /* Localizable.strings */; };
 		1AFF8FC5CF8CA8B9FA6487C3 /* Pods_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F33A36159851849CD69EDA /* Pods_AppUITests.framework */; };
+		3B0D60A085EDE9EF13FE80B0 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A288D8F4042EF32B6447185 /* Pods_App.framework */; };
 		739956986755F55E7CA30F3F /* Pods_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE2C51EB9E2067828546586 /* Pods_AppTests.framework */; };
-		EE28F016D4AADA2B033E399F /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A288D8F4042EF32B6447185 /* Pods_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +68,7 @@
 		19B3928D1E1F59F0009FB2B8 /* CustomTabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabbarViewController.swift; sourceTree = "<group>"; };
 		19B3928E1E1F59F0009FB2B8 /* TurbolinksNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurbolinksNavigationController.swift; sourceTree = "<group>"; };
 		19B392A31E1F637B009FB2B8 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		19EAA7FE1EE90138005BC2FD /* Pods_App.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_App.framework; path = "../../../../Library/Developer/Xcode/DerivedData/App-gnneyhmbcnqrqdgpcnlzfxgqqddn/Build/Products/Debug-iphonesimulator/Pods_App.framework"; sourceTree = "<group>"; };
 		4A288D8F4042EF32B6447185 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CBABE46827B7DD9CE688ECE /* Pods-AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppTests/Pods-AppTests.release.xcconfig"; sourceTree = "<group>"; };
 		6FE2C51EB9E2067828546586 /* Pods_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE28F016D4AADA2B033E399F /* Pods_App.framework in Frameworks */,
+				3B0D60A085EDE9EF13FE80B0 /* Pods_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +168,7 @@
 		19B392321E1C6796009FB2B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				19EAA7FE1EE90138005BC2FD /* Pods_App.framework */,
 				4A288D8F4042EF32B6447185 /* Pods_App.framework */,
 				6FE2C51EB9E2067828546586 /* Pods_AppTests.framework */,
 				A3F33A36159851849CD69EDA /* Pods_AppUITests.framework */,
@@ -336,6 +338,7 @@
 					19B391FD1E1C5F0A009FB2B8 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 8539UF9TNG;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					19B392141E1C5F0A009FB2B8 = {
@@ -412,7 +415,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1517C23AA27C0AC93EF8BB71 /* [CP] Check Pods Manifest.lock */ = {
@@ -427,7 +430,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		193C3D051E51398900A63EDA /* ShellScript */ = {
@@ -513,7 +516,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C86E96EED2FC9DCECE20EACC /* [CP] Copy Pods Resources */ = {
@@ -738,7 +741,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tweglobal.sterling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -756,7 +759,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tweglobal.sterling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -1,29 +1,28 @@
 PODS:
-  - Crashlytics (3.7.0):
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.7)
-  - Turbolinks (1.0.3)
+  - Fabric (1.6.11)
+  - Turbolinks (2.0.0)
 
 DEPENDENCIES:
   - Crashlytics
   - Fabric
-  - Turbolinks (from `https://github.com/turbolinks/turbolinks-ios.git`, tag `v1.0.3`)
+  - Turbolinks (from `https://github.com/turbolinks/turbolinks-ios.git`)
 
 EXTERNAL SOURCES:
   Turbolinks:
     :git: https://github.com/turbolinks/turbolinks-ios.git
-    :tag: v1.0.3
 
 CHECKOUT OPTIONS:
   Turbolinks:
+    :commit: 1d6e267dd6a60faed8e51d2cbf893bd7d7851538
     :git: https://github.com/turbolinks/turbolinks-ios.git
-    :tag: v1.0.3
 
 SPEC CHECKSUMS:
-  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  Turbolinks: 1d952338afb5ae2875f55ce0e9122d3a51b0b3c8
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  Turbolinks: 3f60819d36350d872b436dc22497a1050c144b95
 
-PODFILE CHECKSUM: 253295d5f22c70960ed739588c2d694352b704bf
+PODFILE CHECKSUM: e8c13cecdd2ee4295faa72db12ca53f61e53e5da
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

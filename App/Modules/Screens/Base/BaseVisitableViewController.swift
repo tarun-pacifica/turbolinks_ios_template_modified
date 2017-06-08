@@ -10,7 +10,7 @@ class BaseVisitableViewController: Turbolinks.VisitableViewController, UIScrollV
     let pathsToAvoidDismissButton : [String?] = [
     ]
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
     }
@@ -21,12 +21,12 @@ class BaseVisitableViewController: Turbolinks.VisitableViewController, UIScrollV
         setupDismissButton()
         
         //Disable zoom
-        visitableView.webView?.scrollView.pinchGestureRecognizer?.enabled = false
+        visitableView.webView?.scrollView.pinchGestureRecognizer?.isEnabled = false
         
         //Disable pull to refresh
         visitableView.webView?.scrollView.bounces = false
         
-        self.navigationController!.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.whiteColor() ]
+        self.navigationController!.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white ]
     }
 
     
@@ -37,27 +37,27 @@ class BaseVisitableViewController: Turbolinks.VisitableViewController, UIScrollV
     }
     
     // MARK: dismiss
-    private func setupDismissButton() {
-        if isModal() && navigationController?.viewControllers.count == 1 && !pathsToAvoidDismissButton.contains({$0 == visitableURL.path}) {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(didTouchCancel))
+    fileprivate func setupDismissButton() {
+        if isModal() && navigationController?.viewControllers.count == 1 && !pathsToAvoidDismissButton.contains(where: {$0 == visitableURL.path}) {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTouchCancel))
         }
     }
     
     func didTouchCancel() {
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     
     // MARK: Error
-    func handleError(error: NSError) {
+    func handleError(_ error: NSError) {
         guard let errorCode = ErrorCode(rawValue: error.code) else {
             presentError(.UnknownError)
             return
         }
 
         switch errorCode {
-        case .HTTPFailure:
+        case .httpFailure:
             guard let statusCode = error.userInfo["statusCode"] as? Int else {
                 presentError(.UnknownError)
                 return
@@ -68,34 +68,34 @@ class BaseVisitableViewController: Turbolinks.VisitableViewController, UIScrollV
             default:
                 presentError(Error(HTTPStatusCode: statusCode))
             }
-        case .NetworkFailure:
+        case .networkFailure:
             presentError(.NetworkError)
             
         }
     }
     
-    private func presentError(error: Error) {
+    fileprivate func presentError(_ error: Error) {
         errorView.error = error
         view.addSubview(errorView)
         installErrorViewConstraints()
     }
     
     
-    private lazy var errorView: ErrorView = {
-        guard let view = NSBundle.mainBundle().loadNibNamed("ErrorView", owner: self, options: nil)?.first as? ErrorView else {
+    fileprivate lazy var errorView: ErrorView = {
+        guard let view = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil)?.first as? ErrorView else {
             return ErrorView()
         }
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.retryButton.addTarget(self, action: #selector(retry(_:)), forControlEvents: .TouchUpInside)
+        view.retryButton.addTarget(self, action: #selector(retry(_:)), for: .touchUpInside)
         return view
     }()
     
-    private func installErrorViewConstraints() {
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: [ "view": errorView ]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: [ "view": errorView ]))
+    fileprivate func installErrorViewConstraints() {
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: [ "view": errorView ]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: [ "view": errorView ]))
     }
     
-    @objc private func retry(sender: AnyObject) {
+    @objc fileprivate func retry(_ sender: AnyObject) {
         errorView.removeFromSuperview()
         reloadVisitable()
     }

@@ -34,19 +34,19 @@ struct K {
         }
         
         
-        static func urlFor(string: String) -> NSURL {
+        static func urlFor(_ string: String) -> Foundation.URL {
             let str = Domain + string
-            let protocolSuffixRange = str.rangeOfString("://")
+            let protocolSuffixRange = str.range(of: "://")
             var urlString = ""
-            if let indexAfterProtocol = protocolSuffixRange?.endIndex {
+            if let indexAfterProtocol = protocolSuffixRange?.upperBound {
                 let range = indexAfterProtocol..<str.endIndex
-                urlString = str.stringByReplacingOccurrencesOfString("//", withString: "/", range: range)
+                urlString = str.replacingOccurrences(of: "//", with: "/", range: range)
             } else {
-                urlString = str.stringByReplacingOccurrencesOfString("//", withString: "/")
+                urlString = str.replacingOccurrences(of: "//", with: "/")
             }
-            guard let URL = NSURL(string: urlString) else {
+            guard let URL = Foundation.URL(string: urlString) else {
                 debugPrint("ERROR:", "Not valid URL:", urlString)
-                return NSURL()
+                return Foundation.URL(string: Domain)!
             }
             return URL
         }

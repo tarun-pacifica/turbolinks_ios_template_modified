@@ -8,19 +8,19 @@ import Turbolinks
  */
 class TurbolinksNavigationController: UINavigationController {
     // URL to be visited
-    private var URL : NSURL;
+    fileprivate var URL : Foundation.URL;
     
     // whether this view controller should be reloaded or not on viewWillAppear.
-    private var shouldReloadOnAppear : Bool = false;
+    fileprivate var shouldReloadOnAppear : Bool = false;
     
-    private lazy var session: Session = {
+    fileprivate lazy var session: Session = {
         let session = Session(webViewConfiguration: self.webViewConfiguration)
         session.delegate = self
         return session
     }()
     
     
-    private lazy var webViewConfiguration: WKWebViewConfiguration = {
+    fileprivate lazy var webViewConfiguration: WKWebViewConfiguration = {
         let configuration = WKWebViewConfiguration()
         configuration.processPool = AppDelegate.webViewProcessPool
         configuration.applicationNameForUserAgent = K.Session.AppNameForUserAgent
@@ -33,17 +33,17 @@ class TurbolinksNavigationController: UINavigationController {
         session.webView.reloadFromOrigin()
     }
     
-    func visit(URL: NSURL) {
+    func visit(_ URL: Foundation.URL) {
         showVisitableForSession(session, URL: URL)
     }
     
     // MARK: Initializers
     required init?(coder aDecoder: NSCoder) {
-        self.URL = NSURL();
+        self.URL = Foundation.URL(string: Domain)!
         super.init(coder: aDecoder)
     }
     
-    init(url: NSURL) {
+    init(url: Foundation.URL) {
         self.URL = url;
         super.init(nibName: nil, bundle: nil)
     }
@@ -58,7 +58,7 @@ class TurbolinksNavigationController: UINavigationController {
        
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if shouldReloadOnAppear {
@@ -72,35 +72,35 @@ class TurbolinksNavigationController: UINavigationController {
     }
     
     
-    private func removeNotificationCenterObservers() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    fileprivate func removeNotificationCenterObservers() {
+        NotificationCenter.default.removeObserver(self)
     }
     
-    @objc private func handleDismissedForm() {
+    @objc fileprivate func handleDismissedForm() {
         shouldReloadOnAppear = true
     }
 
     // MARK: other
-    private func showVisitableForSession(session: Session, URL: NSURL, action: Action = .Advance) {
+    fileprivate func showVisitableForSession(_ session: Session, URL: Foundation.URL, action: Action = .Advance) {
         guard URL.path != nil else {
             return
         }
         
-        if URL.description.lowercaseString.rangeOfString("http://") != nil || URL.description.lowercaseString.rangeOfString("https://") != nil {
+        if URL.description.lowercased().range(of: "http://") != nil || URL.description.lowercased().range(of: "https://") != nil {
             showVisitableViewControllerWithUrl(URL, action: action)
         } else {
-            UIApplication.sharedApplication().openURL(URL)
+            UIApplication.shared.openURL(URL)
         }
         
     }
     
-    private func addNotificationCenterObservers() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(handleDismissedForm), name: K.NotificationCenter.hasDismissedForm, object: nil)
+    fileprivate func addNotificationCenterObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDismissedForm), name: NSNotification.Name(rawValue: K.NotificationCenter.hasDismissedForm), object: nil)
     }
     
-    private func showVisitableViewControllerWithUrl(URL: NSURL, action: Action) {
+    fileprivate func showVisitableViewControllerWithUrl(_ URL: Foundation.URL, action: Action) {
         
-        let visitable : BaseVisitableViewController = BaseVisitableViewController(URL: URL)
+        let visitable : BaseVisitableViewController = BaseVisitableViewController(url: URL)
         
         switch action {
         case .Advance:
@@ -111,7 +111,7 @@ class TurbolinksNavigationController: UINavigationController {
             if viewControllers.count == 1 {
                 setViewControllers([visitable], animated: false)
             } else {
-                popViewControllerAnimated(false)
+                popViewController(animated: false)
                 pushViewController(visitable, animated: false)
             }
         case .Restore:
@@ -126,20 +126,20 @@ class TurbolinksNavigationController: UINavigationController {
 extension TurbolinksNavigationController: SessionDelegate {
     
     
-    func session(session: Session, didProposeVisitToURL URL: NSURL, withAction action: Action) {
+    func session(_ session: Session, didProposeVisitToURL URL: Foundation.URL, withAction action: Action) {
 
         if shouldChangeNavigationTab(URL){
 
-            switch(URL.path!){
-            case K.URL.Tab1.path!:
+            switch(URL.path){
+            case K.URL.Tab1.path:
                 self.tabBarController?.selectedIndex = 0
-            case K.URL.Tab2.path!:
+            case K.URL.Tab2.path:
                 self.tabBarController?.selectedIndex = 1
-            case K.URL.Tab3.path!:
+            case K.URL.Tab3.path:
                 self.tabBarController?.selectedIndex = 2
-            case K.URL.Tab4.path!:
+            case K.URL.Tab4.path:
                 self.tabBarController?.selectedIndex = 3
-            case K.URL.Tab5.path!:
+            case K.URL.Tab5.path:
                 self.tabBarController?.selectedIndex = 4
             default:
                 return
@@ -148,8 +148,8 @@ extension TurbolinksNavigationController: SessionDelegate {
         }
         
         if shouldBeDismissedFromURL(self.URL, toURL:URL) {
-            NSNotificationCenter.defaultCenter().postNotificationName(K.NotificationCenter.hasDismissedForm, object: nil)
-            dismissViewControllerAnimated(true, completion: {})
+            NotificationCenter.default.post(name: Notification.Name(rawValue: K.NotificationCenter.hasDismissedForm), object: nil)
+            dismiss(animated: true, completion: {})
             return
         }
 
@@ -161,52 +161,50 @@ extension TurbolinksNavigationController: SessionDelegate {
         
     }
     
-    func session(session: Session){
+    func session(_ session: Session){
         
     }
     
-    func session(session: Session, didFailRequestForVisitable visitable: Visitable, withError error: NSError) {
+    func session(_ session: Session, didFailRequestForVisitable visitable: Visitable, withError error: NSError) {
         guard let visitableViewController = visitable as? BaseVisitableViewController else { return }
         visitableViewController.handleError(error)
         
     }
     
-    func session(session: Session, openExternalURL URL: NSURL) {
+    func session(_ session: Session, openExternalURL URL: Foundation.URL) {
         if #available(iOS 10.0, *) {
-            UIApplication.sharedApplication().openURL(URL, options: [:], completionHandler: nil)
+            UIApplication.shared.open(URL, options: [:], completionHandler: nil)
         } else {
-            UIApplication.sharedApplication().openURL(URL)
+            UIApplication.shared.openURL(URL)
         }
     }
     
-    func sessionDidStartRequest(session: Session) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    func sessionDidStartRequest(_ session: Session) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
-    func sessionDidFinishRequest(session: Session) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    func sessionDidFinishRequest(_ session: Session) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
-    private func shouldChangeNavigationTab(toURL: NSURL) -> Bool {
-        guard toURL.path != nil else { return false }
+    fileprivate func shouldChangeNavigationTab(_ toURL: Foundation.URL) -> Bool {
         return toURL == K.URL.Tab1 || toURL == K.URL.Tab2 || toURL == K.URL.Tab3 || toURL == K.URL.Tab4 || toURL == K.URL.Tab5
     }
     
     // Change here if you want a path to be dismissed on a visit proposal
-    private func shouldBeDismissedFromURL(fromURL: NSURL, toURL: NSURL) -> Bool {
+    fileprivate func shouldBeDismissedFromURL(_ fromURL: Foundation.URL, toURL: Foundation.URL) -> Bool {
         return isModal()
     }
     
     
     // Change here if you want a path to be presented on a visit proposal
-    private func shouldBePresentedFromURL(fromURL: NSURL, toURL: NSURL) -> Bool {
-        guard toURL.path != nil else { return false }
+    fileprivate func shouldBePresentedFromURL(_ fromURL: Foundation.URL, toURL: Foundation.URL) -> Bool {
         return (toURL.path == "/modal")
     }
 }
 
 extension TurbolinksNavigationController: WKScriptMessageHandler {
-    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
        
     }
@@ -216,9 +214,9 @@ extension TurbolinksNavigationController: WKScriptMessageHandler {
 
 // MARK: extension to presentViewController using URL
 extension TurbolinksNavigationController {
-    private func presentViewController(URL: NSURL) {
+    fileprivate func presentViewController(_ URL: Foundation.URL) {
         let vc = TurbolinksNavigationController(url: URL)
-        presentViewController(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
     }
 }
 
