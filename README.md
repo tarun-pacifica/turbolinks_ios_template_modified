@@ -22,9 +22,6 @@ Add the following to your `Cartfile`:
 ```
 github "turbolinks/turbolinks-ios" "master"
 ```
-The Xcode 8 command-line compiler defaults to Swift 3, so you will need to instruct Carthage to use the Swift 2.3 toolchain.
-
-Run `TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 carthage update` in your terminal
 
 *Be warned, Carthage is not as stable as Pod's for now*
 
