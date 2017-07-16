@@ -1,14 +1,12 @@
 //
 //  Constants.swift
-//  Stockland
 //
-//  Created by Mark Biegel on 6/1/17.
 //
 
 import Foundation
 import UIKit
 
-let Domain = "http://localhost:3000"
+let Domain = "http://192.168.0.9:3000"
 
 struct K {
     struct Session {
@@ -21,10 +19,10 @@ struct K {
     
     struct URL {
         static let Tab1           = K.URL.urlFor("/")
-        static let Tab2           = K.URL.urlFor("/google")
-        static let Tab3           = K.URL.urlFor("/firefox")
-        static let Tab4           = K.URL.urlFor("/safari")
-        static let Tab5           = K.URL.urlFor("/icecat")
+        static let Tab2           = K.URL.urlFor("/about")
+//        static let Tab3           = K.URL.urlFor("/firefox")
+//        static let Tab4           = K.URL.urlFor("/safari")
+//        static let Tab5           = K.URL.urlFor("/icecat")
 
         
         

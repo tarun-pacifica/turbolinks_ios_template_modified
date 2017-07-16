@@ -135,12 +135,12 @@ extension TurbolinksNavigationController: SessionDelegate {
                 self.tabBarController?.selectedIndex = 0
             case K.URL.Tab2.path:
                 self.tabBarController?.selectedIndex = 1
-            case K.URL.Tab3.path:
-                self.tabBarController?.selectedIndex = 2
-            case K.URL.Tab4.path:
-                self.tabBarController?.selectedIndex = 3
-            case K.URL.Tab5.path:
-                self.tabBarController?.selectedIndex = 4
+//            case K.URL.Tab3.path:
+//                self.tabBarController?.selectedIndex = 2
+//            case K.URL.Tab4.path:
+//                self.tabBarController?.selectedIndex = 3
+//            case K.URL.Tab5.path:
+//                self.tabBarController?.selectedIndex = 4
             default:
                 return
             }
@@ -187,9 +187,13 @@ extension TurbolinksNavigationController: SessionDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+//    fileprivate func shouldChangeNavigationTab(_ toURL: Foundation.URL) -> Bool {
+//        return toURL == K.URL.Tab1 || toURL == K.URL.Tab2 || toURL == K.URL.Tab3 || toURL == K.URL.Tab4 || toURL == K.URL.Tab5
+//    }
     fileprivate func shouldChangeNavigationTab(_ toURL: Foundation.URL) -> Bool {
-        return toURL == K.URL.Tab1 || toURL == K.URL.Tab2 || toURL == K.URL.Tab3 || toURL == K.URL.Tab4 || toURL == K.URL.Tab5
+        return toURL == K.URL.Tab1 || toURL == K.URL.Tab2
     }
+
     
     // Change here if you want a path to be dismissed on a visit proposal
     fileprivate func shouldBeDismissedFromURL(_ fromURL: Foundation.URL, toURL: Foundation.URL) -> Bool {
